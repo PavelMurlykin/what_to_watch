@@ -27,6 +27,16 @@
             {% endfor %}
           </p>
           {% endif %}
+
+          {{ form.images(class="form-control form-control-lg py-2 mb-3")}}
+          {% if form.images.errors %}
+            <p class="text-danger">
+            {% for error in form.images.errors %}
+              {{ error }}
+            {% endfor %}
+            </p>
+          {% endif %}
+
           {{ form.submit(class="button px-5 py-3 btn") }}
         </form>
         <p class="py-3 mb-3">
