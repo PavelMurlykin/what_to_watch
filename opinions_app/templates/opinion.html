@@ -17,6 +17,14 @@
           Ссылка для друзей:
           <a href="{{ url_for('opinion_view', id=opinion.id, _external=True) }}">{{ url_for('opinion_view', id=opinion.id, _external=True) }}</a>
         </p>
+        {% if opinion.images %}
+          <!-- Для каждой ссылки на картинку сформировать параграф p с изображением. -->
+          {% for image_url in opinion.images %}
+            <p>
+              <img class="img-fluid mx-auto d-block" src="{{ image_url }}">
+            </p>
+          {% endfor %}
+        {% endif %}
       </div>
       <div class="col-12 col-lg-5">
         <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='img/illustration.png') }}" alt="" />
