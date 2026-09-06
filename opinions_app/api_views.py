@@ -1,7 +1,9 @@
 from flask import jsonify, request
+from random import randrange
 
 from . import app, db
 from .models import Opinion
+from .views import random_opinion
 
 
 @app.route('/api/opinions/<int:id>/', methods=['GET'])
@@ -18,6 +20,12 @@ def get_opinions():
     # а потом все объекты поместить в список opinions_list.
     opinions_list = [opinion.to_dict() for opinion in opinions]
     return jsonify({'opinions': opinions_list}), 200
+
+
+@app.route('/api/get-random-opinion/', methods=['GET'])
+def get_random_opinion():
+    opinion = random_opinion()
+    return jsonify({'opinion': opinion.to_dict()}), 200
 
 
 @app.route('/api/opinions/', methods=['POST'])
